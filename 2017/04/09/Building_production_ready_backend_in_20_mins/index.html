@@ -5,17 +5,27 @@
   <meta name="google-site-verification" content="raTLOxj-TDDGCH6HUnLYN1F9dyO1fqiXpkALv5R_4wg" />
   <link rel="alternate" href="http://aswin5.github.io" hreflang="en-us" />
   
-  <title>CodexDelta</title>
+  <title>Building production ready backend in 20 mins | CodexDelta</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Journal of creating and learning awesome things.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CodexDelta">
-<meta property="og:url" content="http://aswin5.github.io/index.html">
+  <meta name="description" content="Nodejs is a js runtime which is built on chrom’s v8 js engine, there are few remarkable features of nodejs application which makes it choice of 2017 in building server side application. It is based o">
+<meta name="keywords" content="Nodejs,JavaScript,Loopback">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Building production ready backend in 20 mins">
+<meta property="og:url" content="http://aswin5.github.io/2017/04/09/Building_production_ready_backend_in_20_mins/index.html">
 <meta property="og:site_name" content="CodexDelta">
-<meta property="og:description" content="Journal of creating and learning awesome things.">
+<meta property="og:description" content="Nodejs is a js runtime which is built on chrom’s v8 js engine, there are few remarkable features of nodejs application which makes it choice of 2017 in building server side application. It is based o">
+<meta property="og:image" content="http://aswin5.github.io/images/REST-API-using-Selenium_1-768x389.jpg">
+<meta property="og:image" content="http://aswin5.github.io/images/NodeJS-Stack.png">
+<meta property="og:image" content="http://aswin5.github.io/images/module_count-768x562.png">
+<meta property="og:image" content="http://aswin5.github.io/images/trend_tech_chart-768x476.png">
+<meta property="og:image" content="http://aswin5.github.io/images/loopback_1.png">
+<meta property="og:image" content="http://aswin5.github.io/images/loopback_2-768x291.png">
+<meta property="og:image" content="http://aswin5.github.io/images/loopback_3-300x192.png">
+<meta property="og:updated_time" content="2017-02-22T10:36:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CodexDelta">
-<meta name="twitter:description" content="Journal of creating and learning awesome things.">
+<meta name="twitter:title" content="Building production ready backend in 20 mins">
+<meta name="twitter:description" content="Nodejs is a js runtime which is built on chrom’s v8 js engine, there are few remarkable features of nodejs application which makes it choice of 2017 in building server side application. It is based o">
+<meta name="twitter:image" content="http://aswin5.github.io/images/REST-API-using-Selenium_1-768x389.jpg">
 <meta name="twitter:creator" content="@_ashdev">
   
     <link rel="alternate" href="/atom.xml" title="CodexDelta" type="application/atom+xml">
@@ -65,7 +75,7 @@ ga('send', 'pageview');
     <div class="collapse navbar-collapse" id="main-menu-navbar">
       <ul class="nav navbar-nav">
         
-          <li><a class="active"
+          <li><a class=""
                  href="/index.html">Home</a></li>
         
           <li><a class=""
@@ -100,116 +110,13 @@ ga('send', 'pageview');
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-          
-  
-    <article id="post-playing_around_with_custom_directive_in_AngularJs" class="article article-type-post" itemscope itemprop="blogPost">
+          <article id="post-Building_production_ready_backend_in_20_mins" class="article article-type-post" itemscope itemprop="blogPost">
 
   <header class="article-header">
     
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/09/playing_around_with_custom_directive_in_AngularJs/">Playing around custom directive in AngularJs</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2017/04/09/playing_around_with_custom_directive_in_AngularJs/" class="article-date"><time datetime="2017-04-08T23:12:20.892Z" itemprop="datePublished">09-04-2017</time></a>
-</div>
-
-    
-    
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Playing-around-custom-directive-in-angularjs"><a href="#Playing-around-custom-directive-in-angularjs" class="headerlink" title="Playing around custom directive in angularjs"></a>Playing around custom directive in angularjs</h3><p>Angularjs have so many in-built directive which are extensively used all over such as</p>
-<p>Directive is one of the most powerful feature of the angularjs but it is also one of the most confusing element of angularjs. In your template there would be so many repetative components which would make our code bulky if we go forward by repeating the same code again and again so how about creating a custom directive which helps you repeat the component innumberable times with using ng-repeat irrespective of the position and template for the directive. </p>
-<p>so how to use a directive, it could be used as an element, an attribute to another element, or even as a comment. Each directive could be restricted to the type of use using restrict key with value as ‘A’, ‘E’, ‘M’ or even ‘AEM’ or ‘AE’  or ‘EM’. </p>
-<p>A: Attribute</p>
-<p>E: Element</p>
-<p>M: Comments</p>
-<p>following code makes the attribute to be used as an attribute and as a element. </p>
-<h5 id="Creating-a-simplest-custom-directive"><a href="#Creating-a-simplest-custom-directive" class="headerlink" title="Creating a simplest custom directive"></a>Creating a simplest custom directive</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var app = angular.module(&apos;myApp&apos;, []); </div><div class="line">app.directive(&apos;interestCard&apos;, function()&#123;</div><div class="line">  return &#123;</div><div class="line">    restrict: &apos;AE&apos;, // restrict the use of directive as element or attribute to an element</div><div class="line">   	template: &apos;&lt;h1&gt;viva la vida&lt;/h1&gt;&apos;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>In the above directive we used template for defining how our directive would look like, we could add ‘replace: true,’ which will make sure that when our directive is called upon it actually replaces our directive with the template in directive thus you wont find the directive in final dom elements but you will find the template itself. </p>
-<p>The template mentioned in above code is quite simple, it could be replaced by templareUrl to include a more complex template for the directive’s use. </p>
-<p><strong>Understading scope in directive</strong></p>
-<p>Ever wondered what all options are available for angular to manipulate data at multiple levels in a single app. Manage data at main app controller, go with the modular approach in building app and handle separate isolated data model for making the isolated components work. In certain uses cases angular directive needs to interact with other controllers defined outside the directive to access certain functions and to change certain scope values. The directive could have its own controller or it can borrow it from main controller. </p>
-<p>In the following section we will explore what all options we have in dealing with data and scoped objects at directive level. Scope in directive are of three types which includes: shared, inherited and isolated scopes. now what does it mean?</p>
-<p>scope: false</p>
-<p>Shared scope, when directive is using scope of controller. Normally scope in directive is always inherited by parent scope, thus making it accessable to functions and scope values defined in controller. Let me remind you any change in the directive in scope it will reflect in the controller’s scope.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">app.directive(&apos;vivaLaVida&apos;, function() &#123;</div><div class="line">  return &#123;</div><div class="line">    restrict: &apos;A&apos;, </div><div class="line">    scope: false, </div><div class="line">    ......</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>scope: true</p>
-<p>Then there is a true condition where a new scope is created for the directive and change in directive scope will not reflect in the scope of controller this new scope is a disconnected child of the parent controller with all the same property but no tie with the parent. </p>
-<p>scope: {}</p>
-<p>when scope(directive) is completely isolated from scope of controller we go with ‘scope: {}’. well why isolated scope what’s the need to have a sperate scope when you already have one which can be accessed by all. the point to drive back home is you dont want your main controllers scope gets all messed up with logics which are specific to directives and would not be used anywhere else other then that directive. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">app.directive(&apos;vivaLaVida&apos;, function()&#123;</div><div class="line">  return&#123;</div><div class="line">    restrict: &apos;AE&apos;, </div><div class="line">    scope: &#123;&#125; </div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>scope elements could be made to connect with different elements through different binding levels, this makes isolated scope great since you have the enviornment totally isolated plus connectivity required as per need. this binding involves</p>
-<ul>
-<li>@ : one way binding mostly used for passing strings values in scope</li>
-<li>= : two way binding for sharing model. the model in parent scope is connected to isolated scope of directive. </li>
-<li>&amp; : binding is for passing methods into isolated scope of directive making it available to be called form inside of directive. </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">app.directive(&apos;vivaLaVida&apos;, function()&#123;</div><div class="line">  return &#123;</div><div class="line">    restrict: &apos;AE&apos;, </div><div class="line">    scope: &#123;</div><div class="line">      messageText: &apos;@&apos;, </div><div class="line">      userModel: &apos;=&apos;, </div><div class="line">      alertFunction: &apos;&amp;&apos;</div><div class="line">    &#125;, </div><div class="line">    .....</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h5 id="Compile-your-directive"><a href="#Compile-your-directive" class="headerlink" title="Compile your directive"></a>Compile your directive</h5><p>compile function is like adding last end changes and functionality before the directive is pushed to DOm with its controller. you can have both compile and link function  or inside link function you can have pre-link and post-link functions. its just the same. </p>
-<p>now lets go deeper, lets bring some facts on the table regarding DOM and angular. If we go through what’s happening at the back then you would notice that at first whole of the DOM is loaded and then a broadcast is triggered when DOM is ready, angular listen to this trigger and parse the DOM searching for attribute ng-app when found it starts proccessing the DOM from that element. </p>
-<p>Now its depends a lot on the directive’s defination for how angular would parse the directive. Following example would be helpful in understanding deeper concepts with compile and link functions. </p>
-<p>following code reference from <a href="http://www.jvandemo.com/the-nitty-gritty-of-compile-and-link-functions-inside-angularjs-directives/" target="_blank" rel="external">jvandemo.com</a> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;level-one&gt;  </div><div class="line">    &lt;level-two&gt;</div><div class="line">        &lt;level-three&gt;</div><div class="line">            Hello &#123;&#123;name&#125;&#125;         </div><div class="line">        &lt;/level-three&gt;</div><div class="line">    &lt;/level-two&gt;</div><div class="line">&lt;/level-one&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">var app = angular.module(&apos;plunker&apos;, []);</div><div class="line"></div><div class="line">function createDirective(name)&#123;  </div><div class="line">  return function()&#123;</div><div class="line">    return &#123;</div><div class="line">      restrict: &apos;E&apos;,</div><div class="line">      compile: function(tElem, tAttrs)&#123;</div><div class="line">        console.log(name + &apos;: compile&apos;);</div><div class="line">        return &#123;</div><div class="line">          pre: function(scope, iElem, iAttrs)&#123;</div><div class="line">            console.log(name + &apos;: pre link&apos;);</div><div class="line">          &#125;,</div><div class="line">          post: function(scope, iElem, iAttrs)&#123;</div><div class="line">            console.log(name + &apos;: post link&apos;);</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">app.directive(&apos;levelOne&apos;, createDirective(&apos;levelOne&apos;));  </div><div class="line">app.directive(&apos;levelTwo&apos;, createDirective(&apos;levelTwo&apos;));  </div><div class="line">app.directive(&apos;levelThree&apos;, createDirective(&apos;levelThree&apos;));</div></pre></td></tr></table></figure>
-<p>here is the output</p>
-<p><img src="http://www.jvandemo.com/content/images/2014/Aug/console-output-1.png" alt="Output"></p>
-<p>if you notice the output console you would see the order in which the code runs. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// COMPILE PHASE</span></div><div class="line"><span class="comment">// levelOne:    compile function is called</span></div><div class="line"><span class="comment">// levelTwo:    compile function is called</span></div><div class="line"><span class="comment">// levelThree:  compile function is called</span></div><div class="line"></div><div class="line"><span class="comment">// PRE-LINK PHASE</span></div><div class="line"><span class="comment">// levelOne:    pre link function is called</span></div><div class="line"><span class="comment">// levelTwo:    pre link function is called</span></div><div class="line"><span class="comment">// levelThree:  pre link function is called</span></div><div class="line"></div><div class="line"><span class="comment">// POST-LINK PHASE (Notice the reverse order)</span></div><div class="line"><span class="comment">// levelThree:  post link function is called</span></div><div class="line"><span class="comment">// levelTwo:    post link function is called</span></div><div class="line"><span class="comment">// levelOne:    post link function is called</span></div></pre></td></tr></table></figure>
-<p>few points to notice, how angular run the compile of each element from top to bottom and then run the link function starting with pre-link in the same order but the post-link function is reverse order. </p>
-<p>Compile function:</p>
-<p>use compile function to change the original DOM elements before angualrjs creates instance of it and before scope is created. ng-repeat is a perfect example for this. </p>
-<p>When compile runs scope is yet not assigned hence compile function can be defined as </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">* Compile function</div><div class="line">* </div><div class="line">* @param tElem - template element</div><div class="line">* @param tAttrs - attributes of the template element</div><div class="line">*/</div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">tElem, tAttrs</span>)</span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// ...</span></div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>pre-link function: </p>
-<p>use pre-link function to manipulate the scope of the directive before the post-link function is called since we have the scope, elements and attributes but no controller. Controller only comes in the post-link function of the directive. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">* Pre-link function</div><div class="line">* </div><div class="line">* @param scope - scope assigned to the directive</div><div class="line">* @param tElem - template element</div><div class="line">* @param tAttrs - attributes of the template element</div><div class="line">*/</div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">scope, tElem, tAttrs</span>)</span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// ...</span></div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>post-link function:</p>
-<p>run post-link function to execute the logic of your directive or instance since all child elements compile and pre-link functions have been executed. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">* Post-link function</div><div class="line">* </div><div class="line">* @param scope - scope assigned to the directive</div><div class="line">* @param tElem - template element</div><div class="line">* @param tAttrs - attributes of the template element</div><div class="line">*/</div><div class="line">function(scope, tElem, tAttrs)&#123;</div><div class="line"></div><div class="line">    // ...</div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="http://aswin5.github.io/2017/04/09/playing_around_with_custom_directive_in_AngularJs/" data-id="cj19vlyz60000qjgb8gt3jy7n" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angularjs/">angularjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/directive/">directive</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Building_production_ready_backend_in_20_mins" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/09/Building_production_ready_backend_in_20_mins/">Building production ready backend in 20 mins</a>
+    <h1 class="article-title" itemprop="name">
+      Building production ready backend in 20 mins
     </h1>
   
 
@@ -302,11 +209,22 @@ ga('send', 'pageview');
     </footer>
   </div>
   
-</article>
-
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2017/04/09/playing_around_with_custom_directive_in_AngularJs/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Playing around custom directive in AngularJs</span>
+    </a>
+  </li>
+  
+  
+</ul>
 
 
   
+</article>
 
 
 
