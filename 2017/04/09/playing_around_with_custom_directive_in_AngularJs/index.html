@@ -7,18 +7,18 @@
   
   <title>Playing around custom directive in AngularJs | CodexDelta</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Directive is one of the most powerful feature of the angularjs but it is also one of the most confusing element of angularjs. In your template there would be so many repetative components which would">
-<meta name="keywords" content="JavaScript,angularjs,directive">
+  <meta name="description" content="Directive is one of the most powerful feature of the angularjs but it is also one of the most confusing element of angularjs. In your template there would be so many repetitive components which would">
+<meta name="keywords" content="angularjs,JavaScript,directive">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Playing around custom directive in AngularJs">
 <meta property="og:url" content="http://aswin5.github.io/2017/04/09/playing_around_with_custom_directive_in_AngularJs/index.html">
 <meta property="og:site_name" content="CodexDelta">
-<meta property="og:description" content="Directive is one of the most powerful feature of the angularjs but it is also one of the most confusing element of angularjs. In your template there would be so many repetative components which would">
+<meta property="og:description" content="Directive is one of the most powerful feature of the angularjs but it is also one of the most confusing element of angularjs. In your template there would be so many repetitive components which would">
 <meta property="og:image" content="http://www.jvandemo.com/content/images/2014/Aug/console-output-1.png">
-<meta property="og:updated_time" content="2017-04-09T07:18:57.129Z">
+<meta property="og:updated_time" content="2017-04-26T02:24:35.180Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Playing around custom directive in AngularJs">
-<meta name="twitter:description" content="Directive is one of the most powerful feature of the angularjs but it is also one of the most confusing element of angularjs. In your template there would be so many repetative components which would">
+<meta name="twitter:description" content="Directive is one of the most powerful feature of the angularjs but it is also one of the most confusing element of angularjs. In your template there would be so many repetitive components which would">
 <meta name="twitter:image" content="http://www.jvandemo.com/content/images/2014/Aug/console-output-1.png">
 <meta name="twitter:creator" content="@_ashdev">
   
@@ -130,7 +130,7 @@ ga('send', 'pageview');
 
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Directive is one of the most powerful feature of the angularjs but it is also one of the most confusing element of angularjs. In your template there would be so many repetative components which would make our code bulky if we go forward by repeating the same code again and again so how about creating a custom directive which helps you repeat the component innumberable times with using ng-repeat irrespective of the position and template for the directive.</p>
+        <p>Directive is one of the most powerful feature of the angularjs but it is also one of the most confusing element of angularjs. In your template there would be so many repetitive components which would make our code bulky if we go forward by repeating the same code again and again so how about creating a custom directive which helps you repeat the component innumberable times with using ng-repeat irrespective of the position and template for the directive.</p>
 <p>so how to use a directive, it could be used as an element, an attribute to another element, or even as a comment. Each directive could be restricted to the type of use using restrict key with value as ‘A’, ‘E’, ‘M’ or even ‘AEM’ or ‘AE’  or ‘EM’.</p>
 <p>A: Attribute</p>
 <p>E: Element</p>
@@ -139,7 +139,7 @@ ga('send', 'pageview');
 <h5 id="Creating-a-simplest-custom-directive"><a href="#Creating-a-simplest-custom-directive" class="headerlink" title="Creating a simplest custom directive"></a>Creating a simplest custom directive</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var app = angular.module(&apos;myApp&apos;, []);</div><div class="line">app.directive(&apos;interestCard&apos;, function()&#123;</div><div class="line">  return &#123;</div><div class="line">    restrict: &apos;AE&apos;, // restrict the use of directive as element or attribute to an element</div><div class="line">   	template: &apos;&lt;h1&gt;viva la vida&lt;/h1&gt;&apos;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>In the above directive we used template for defining how our directive would look like, we could add ‘replace: true,’ which will make sure that when our directive is called upon it actually replaces our directive with the template in directive thus you wont find the directive in final dom elements but you will find the template itself.</p>
 <p>The template mentioned in above code is quite simple, it could be replaced by templareUrl to include a more complex template for the directive’s use.</p>
-<p><strong>Understading scope in directive</strong></p>
+<p><strong>Understanding scope in directive</strong></p>
 <p>Ever wondered what all options are available for angular to manipulate data at multiple levels in a single app. Manage data at main app controller, go with the modular approach in building app and handle separate isolated data model for making the isolated components work. In certain uses cases angular directive needs to interact with other controllers defined outside the directive to access certain functions and to change certain scope values. The directive could have its own controller or it can borrow it from main controller.</p>
 <p>In the following section we will explore what all options we have in dealing with data and scoped objects at directive level. Scope in directive are of three types which includes: shared, inherited and isolated scopes. now what does it mean?</p>
 <p>scope: false</p>
@@ -188,7 +188,7 @@ ga('send', 'pageview');
     
 
     <footer class="article-footer">
-      <a data-url="http://aswin5.github.io/2017/04/09/playing_around_with_custom_directive_in_AngularJs/" data-id="cj1aczbgg0003isgbgur5a695" class="article-share-link">
+      <a data-url="http://aswin5.github.io/2017/04/09/playing_around_with_custom_directive_in_AngularJs/" data-id="cj27t2re30000lngb9dy1pt93" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -201,6 +201,13 @@ ga('send', 'pageview');
   
     
 <ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2017/05/02/transclusion_in_angularjs/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Transclusion in angularjs</span>
+    </a>
+  </li>
   
   
   <li role="presentation">
@@ -235,7 +242,7 @@ ga('send', 'pageview');
   
   <div class="sidebar-module">
     <h4>Tags</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Loopback/">Loopback</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Nodejs/">Nodejs</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/angularjs/">angularjs</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/directive/">directive</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Loopback/">Loopback</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Nodejs/">Nodejs</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/angularjs/">angularjs</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/directive/">directive</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/transclusion/">transclusion</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -244,7 +251,7 @@ ga('send', 'pageview');
   <div class="sidebar-module">
     <h4>Tag Cloud</h4>
     <p class="tagcloud">
-      <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Loopback/" style="font-size: 10px;">Loopback</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/angularjs/" style="font-size: 10px;">angularjs</a> <a href="/tags/directive/" style="font-size: 10px;">directive</a>
+      <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Loopback/" style="font-size: 10px;">Loopback</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/angularjs/" style="font-size: 15px;">angularjs</a> <a href="/tags/directive/" style="font-size: 10px;">directive</a> <a href="/tags/transclusion/" style="font-size: 10px;">transclusion</a>
     </p>
   </div>
 
@@ -252,7 +259,7 @@ ga('send', 'pageview');
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/04/">April 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/02/">February 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">May 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/04/">April 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/02/">February 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -261,6 +268,10 @@ ga('send', 'pageview');
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2017/05/02/transclusion_in_angularjs/">Transclusion in angularjs</a>
+        </li>
       
         <li>
           <a href="/2017/04/09/playing_around_with_custom_directive_in_AngularJs/">Playing around custom directive in AngularJs</a>

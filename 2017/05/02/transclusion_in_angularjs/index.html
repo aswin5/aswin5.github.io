@@ -5,17 +5,19 @@
   <meta name="google-site-verification" content="raTLOxj-TDDGCH6HUnLYN1F9dyO1fqiXpkALv5R_4wg" />
   <link rel="alternate" href="http://aswin5.github.io" hreflang="en-us" />
   
-  <title>Tag: directive | CodexDelta</title>
+  <title>Transclusion in angularjs | CodexDelta</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Journal of creating and learning awesome things.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CodexDelta">
-<meta property="og:url" content="http://aswin5.github.io/tags/directive/index.html">
+  <meta name="description" content="Transclusion is one of the those topics which was quite difficult for me to understand at first. It was when I dicided to write this article that I fully understood the concept of transclusion. If we">
+<meta name="keywords" content="angularjs,JavaScript,transclusion">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transclusion in angularjs">
+<meta property="og:url" content="http://aswin5.github.io/2017/05/02/transclusion_in_angularjs/index.html">
 <meta property="og:site_name" content="CodexDelta">
-<meta property="og:description" content="Journal of creating and learning awesome things.">
+<meta property="og:description" content="Transclusion is one of the those topics which was quite difficult for me to understand at first. It was when I dicided to write this article that I fully understood the concept of transclusion. If we">
+<meta property="og:updated_time" content="2017-05-02T17:10:04.915Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CodexDelta">
-<meta name="twitter:description" content="Journal of creating and learning awesome things.">
+<meta name="twitter:title" content="Transclusion in angularjs">
+<meta name="twitter:description" content="Transclusion is one of the those topics which was quite difficult for me to understand at first. It was when I dicided to write this article that I fully understood the concept of transclusion. If we">
 <meta name="twitter:creator" content="@_ashdev">
   
     <link rel="alternate" href="/atom.xml" title="CodexDelta" type="application/atom+xml">
@@ -100,40 +102,75 @@ ga('send', 'pageview');
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-          
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
+          <article id="post-transclusion_in_angularjs" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
     
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/09/playing_around_with_custom_directive_in_AngularJs/">Playing around custom directive in AngularJs</a>
+    <h1 class="article-title" itemprop="name">
+      Transclusion in angularjs
     </h1>
   
 
 
+  </header>
+
+  <div class="article-meta">
     <div class="article-datetime">
-  <a href="/2017/04/09/playing_around_with_custom_directive_in_AngularJs/" class="archive-article-date"><time datetime="2017-04-08T23:23:15.000Z" itemprop="datePublished">April 9th</time></a>
+  <a href="/2017/05/02/transclusion_in_angularjs/" class="article-date"><time datetime="2017-05-02T17:04:05.000Z" itemprop="datePublished">02-05-2017</time></a>
 </div>
 
-  </header>
-</article>
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Transclusion is one of the those topics which was quite difficult for me to understand at first. It was when I dicided to write this article that I fully understood the concept of transclusion. If we mention transclusion: true in the directive defination then it will make sure that the original content of the directive is available to use and attach to some other portion of the template. </p>
+<p>In link function the fifth element is the transclusion (first four being the element, scope, the attributes and the required controllers). </p>
+<p>So let me explain to you in code</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">//defination of directive</div><div class="line">app.directive('myCard', function()&#123;</div><div class="line">  return&#123;</div><div class="line">    restrict: 'AE', </div><div class="line">    transclude: true,</div><div class="line">    templateUrl: 'template.html', </div><div class="line">    link: function(scope, elem, attrs, ctrls, transclude)&#123;</div><div class="line">      el.find('.content').append(transclude()); // this would tell transclude the elements inside directive (inject) into resulting html where the class is 'content'.</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"></div><div class="line">// pre-compiled html code</div><div class="line">&lt;my-card my-title="basic"&gt;</div><div class="line">    &lt;p&gt;viva la vida&lt;/p&gt;</div><div class="line">    &lt;h1&gt;working awesome&lt;/h1&gt;</div><div class="line">&lt;/my-card&gt;</div><div class="line"></div><div class="line"></div><div class="line">// template.html</div><div class="line">&lt;article&gt;</div><div class="line">    &lt;h2&gt;&#123;&#123;title&#125;&#125;&lt;/h2&gt;</div><div class="line">    &lt;div class="content"&gt;</div><div class="line">    </div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/article&gt;</div><div class="line"></div><div class="line"></div><div class="line">// resulting html page</div><div class="line">&lt;my-card my-title="basic"&gt;</div><div class="line">    &lt;article&gt;</div><div class="line">    &lt;h2&gt;&#123;&#123;title&#125;&#125;&lt;/h2&gt;</div><div class="line">    &lt;div class="content"&gt;</div><div class="line">        &lt;p&gt;viva la vida&lt;/p&gt;</div><div class="line">        &lt;h1&gt;working awesome&lt;/h1&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/article&gt;</div><div class="line">&lt;/my-card&gt;</div></pre></td></tr></table></figure>
+<p>For working example please <a href="https://jsfiddle.net/aswin5/xvy69m01/" target="_blank" rel="external">click here</a></p>
+<p>Transclusion helps in injecting pre-compiled content of a directive to a post-compile directive with or without modifiying the actual content. </p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://aswin5.github.io/2017/05/02/transclusion_in_angularjs/" data-id="cj27t2rec0002lngb12odzxhv" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angularjs/">angularjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/transclusion/">transclusion</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  
+  <li role="presentation">
+    <a href="/2017/04/09/playing_around_with_custom_directive_in_AngularJs/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">Playing around custom directive in AngularJs</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
 
   
-  
-    </div></section>
-  
+</article>
 
 
 
