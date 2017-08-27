@@ -102,6 +102,91 @@ ga('send', 'pageview');
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-es6_series_block_scoping" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/26/es6_series_block_scoping/">ES6 Series - Block Scoping</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2017/08/26/es6_series_block_scoping/" class="article-date"><time datetime="2017-08-26T17:45:15.000Z" itemprop="datePublished">26-08-2017</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Hoisting: the mother of all problems for a beginner.</p>
+<p>Accepting the concept of hoisting has always been difficult to a javascript beginner. And if you are starting your career in javascript that too with es6 then you must know how es6 has resolved this problem with block scoping similar to c-type languages.</p>
+<p>Hoisting could be explained with following example</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Note: go through all the codes  snippets  and <span class="keyword">for</span> best</div><div class="line">learning experience, execute each snippets <span class="keyword">in</span> your browser<span class="string">'s console.</span></div></pre></td></tr></table></figure>
+<p><strong>1: Getting started</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">console.log(test) // Uncaught ReferenceError: test is not defined</div></pre></td></tr></table></figure></p>
+<p>Reason: test is a variable which has never been declared or initialized.</p>
+<p> <strong>2: Hoisting of a variable in ES5</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">condition</span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(condition)&#123;</div><div class="line">    <span class="keyword">var</span> value = <span class="string">'blue'</span>;</div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(value) <span class="comment">// value exists here as undefined</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'value'</span>) <span class="comment">// value exists here too as undefined.</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Reason:</p>
+<p>variable value gets hoisted, meaning it gets declared before the function is declared thus it is accessible through out function that’s why we get ‘undefined’. but its initialization only happens when the condition is meet.</p>
+<p>Problem : unwanted variable available outside its scope.</p>
+<p>This got resolved in es6 with the introduction of block scoped variables by using let and const.</p>
+<p> <strong>3 : No hoisting in ES6</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">condition</span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(condition)&#123;</div><div class="line">    <span class="keyword">let</span> value = <span class="string">'blue'</span>;</div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">  &#125;<span class="keyword">else</span>&#123;</div><div class="line">  	<span class="comment">// value does not exists here</span></div><div class="line">    <span class="keyword">return</span> <span class="literal">null</span></div><div class="line">  &#125;</div><div class="line">  <span class="comment">// value does not exits here</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> Reason : let makes sure that value variable is available to its defined scope which is inside if condition.</p>
+<p> <strong>4 : No redeclaration of variable in ES6</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> value = <span class="string">'blue'</span>;</div><div class="line"></div><div class="line"><span class="keyword">let</span> value = <span class="string">'red'</span>; <span class="comment">//Uncaught TypeError: Identifier 'value' has already been declared</span></div></pre></td></tr></table></figure>
+<p>But if you are in different scope then they won’t throw the error.</p>
+<p> <strong>5: Every const must be initialized on declaration</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> NAME = <span class="string">'aswin'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> VIVA; <span class="comment">// Syntax error: must be initialized.</span></div></pre></td></tr></table></figure>
+<p> <strong>6 : Const declaration prevents the binding and not the value itself.</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> TEST = <span class="number">1</span>;</div><div class="line"><span class="keyword">const</span> TEST = <span class="number">2</span>; <span class="comment">// throw error</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> VIVA = &#123;</div><div class="line">	<span class="attr">name</span>: <span class="string">'aswin'</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> VIVA.name = <span class="string">'devarajan'</span> <span class="comment">// works perfectly</span></div><div class="line"></div><div class="line">VIVA = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'devarajan'</span> <span class="comment">// will throw error.</span></div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure>
+<p> <strong>7: Using variable in loop</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// using variable in loop with var</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;<span class="number">10</span>; i++)&#123;</div><div class="line">  <span class="built_in">console</span>.log(i)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'after loop'</span>, i) <span class="comment">//  i is still accessable as 10</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// using variable in loop with let</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j&lt;<span class="number">10</span>; j++)&#123;</div><div class="line">  <span class="built_in">console</span>.log(j)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'after loop'</span>, j) <span class="comment">// throw error as j is not defined</span></div></pre></td></tr></table></figure>
+<p>Reason : since j is scope binding due to let it is not available outside the loop. But in case of i it is available due to hoisting.</p>
+<p> <strong>8 : Using function in a loop</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// using variable in loop</span></div><div class="line"><span class="keyword">var</span> funcs = []</div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j&lt;<span class="number">10</span>; j++)&#123;</div><div class="line">  funcs.push(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="built_in">console</span>.log(j);&#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">funcs.forEach(d)&#123;</div><div class="line">  d();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>This would print 10 ten times.  since the loop has been executed.  </p>
+<p>To resolve this we could use a Immediate Invoking Function (IIFS).</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> funcs = [];</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">  funcs.push((<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(value);</div><div class="line">    &#125;</div><div class="line">  &#125;)(i))</div><div class="line">&#125;</div><div class="line"></div><div class="line">funcs.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">func</span>) </span>&#123;</div><div class="line">  func();</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>But with es6 you wont have to go through this pain since let would allow you to store each unique instance of variable.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> funcs = [];</div><div class="line"></div><div class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> j=<span class="number">0</span>; j&lt;<span class="number">10</span>; j++)&#123;</div><div class="line">    funcs.push(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="built_in">console</span>.log(j);</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">funcs.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">func</span>)</span>&#123;</div><div class="line">  func();</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>This is the end of the block scope related functionality added in ES6. I would be adding more examples as I come across.</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://aswin5.github.io/2017/08/26/es6_series_block_scoping/" data-id="cj6u2opei0000zbgbjpykyv12" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-transclusion_in_angularjs" class="article article-type-post" itemscope itemprop="blogPost">
 
   <header class="article-header">
@@ -144,7 +229,7 @@ ga('send', 'pageview');
     
 
     <footer class="article-footer">
-      <a data-url="http://aswin5.github.io/2017/05/02/transclusion_in_angularjs/" data-id="cj27t2rec0002lngb12odzxhv" class="article-share-link">
+      <a data-url="http://aswin5.github.io/2017/05/02/transclusion_in_angularjs/" data-id="cj6tlosm50005wbgbdgokk2o2" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -244,7 +329,7 @@ ga('send', 'pageview');
     
 
     <footer class="article-footer">
-      <a data-url="http://aswin5.github.io/2017/04/09/playing_around_with_custom_directive_in_AngularJs/" data-id="cj27t2re30000lngb9dy1pt93" class="article-share-link">
+      <a data-url="http://aswin5.github.io/2017/04/09/playing_around_with_custom_directive_in_AngularJs/" data-id="cj6tloslu0002wbgb1g748wz4" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -348,7 +433,7 @@ ga('send', 'pageview');
     
 
     <footer class="article-footer">
-      <a data-url="http://aswin5.github.io/2017/02/06/Building_production_ready_backend_in_20_mins/" data-id="cj27t2rem0005lngbyjlz5zyk" class="article-share-link">
+      <a data-url="http://aswin5.github.io/2017/02/06/Building_production_ready_backend_in_20_mins/" data-id="cj6tloslk0000wbgbvosqifrp" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -384,7 +469,7 @@ ga('send', 'pageview');
   
   <div class="sidebar-module">
     <h4>Tags</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Loopback/">Loopback</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Nodejs/">Nodejs</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/angularjs/">angularjs</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/directive/">directive</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/transclusion/">transclusion</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/ES6/">ES6</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Loopback/">Loopback</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Nodejs/">Nodejs</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/angularjs/">angularjs</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/directive/">directive</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/transclusion/">transclusion</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -393,7 +478,7 @@ ga('send', 'pageview');
   <div class="sidebar-module">
     <h4>Tag Cloud</h4>
     <p class="tagcloud">
-      <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Loopback/" style="font-size: 10px;">Loopback</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/angularjs/" style="font-size: 15px;">angularjs</a> <a href="/tags/directive/" style="font-size: 10px;">directive</a> <a href="/tags/transclusion/" style="font-size: 10px;">transclusion</a>
+      <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Loopback/" style="font-size: 10px;">Loopback</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/angularjs/" style="font-size: 15px;">angularjs</a> <a href="/tags/directive/" style="font-size: 10px;">directive</a> <a href="/tags/transclusion/" style="font-size: 10px;">transclusion</a>
     </p>
   </div>
 
@@ -401,7 +486,7 @@ ga('send', 'pageview');
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">May 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/04/">April 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/02/">February 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">May 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/04/">April 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/02/">February 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -410,6 +495,10 @@ ga('send', 'pageview');
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2017/08/26/es6_series_block_scoping/">ES6 Series - Block Scoping</a>
+        </li>
       
         <li>
           <a href="/2017/05/02/transclusion_in_angularjs/">Transclusion in angularjs</a>
