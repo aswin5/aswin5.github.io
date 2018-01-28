@@ -104,9 +104,9 @@
     </summary>
     
     
-      <category term="JavaScript" scheme="http://codexdelta.github.io/tags/JavaScript/"/>
-    
       <category term="Nodejs" scheme="http://codexdelta.github.io/tags/Nodejs/"/>
+    
+      <category term="JavaScript" scheme="http://codexdelta.github.io/tags/JavaScript/"/>
     
       <category term="Loopback" scheme="http://codexdelta.github.io/tags/Loopback/"/>
     
