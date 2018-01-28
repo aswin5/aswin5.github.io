@@ -1,0 +1,10 @@
+.viva-header{
+  padding: 5px;
+  margin: 5px;
+  padding-top: 20px;
+  font-size: 20px;
+}
+
+.viva-header a{
+  color: inherit;
+}
