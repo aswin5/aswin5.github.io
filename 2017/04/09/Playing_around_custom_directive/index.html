@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Directive is one of the most powerful feature of the angularjs but it is also one of the most confusing element of angularjs. In your template there would be so many repetitive components which would">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(#2) Playing around custom directive in AngularJs">
+<meta property="og:url" content="http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/index.html">
+<meta property="og:site_name" content="Aswin&#39;s Blog">
+<meta property="og:description" content="Directive is one of the most powerful feature of the angularjs but it is also one of the most confusing element of angularjs. In your template there would be so many repetitive components which would">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.jvandemo.com/content/images/2014/Aug/console-output-1.png">
+<meta property="article:published_time" content="2017-04-09T01:10:12.000Z">
+<meta property="article:modified_time" content="2021-03-21T01:03:29.348Z">
+<meta property="article:author" content="Aswin Devarajan">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="angularjs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.jvandemo.com/content/images/2014/Aug/console-output-1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>(#2) Playing around custom directive in AngularJs</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/05/02/Transclusion_in_angularjs/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/02/06/Building_production_ready_backend/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&text=(#2) Playing around custom directive in AngularJs"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&title=(#2) Playing around custom directive in AngularJs"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&is_video=false&description=(#2) Playing around custom directive in AngularJs"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=(#2) Playing around custom directive in AngularJs&body=Check out this article: http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&title=(#2) Playing around custom directive in AngularJs"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&title=(#2) Playing around custom directive in AngularJs"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&title=(#2) Playing around custom directive in AngularJs"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&title=(#2) Playing around custom directive in AngularJs"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&name=(#2) Playing around custom directive in AngularJs&description=&lt;p&gt;Directive is one of the most powerful feature of the angularjs but it is also one of the most confusing element of angularjs. In your template there would be so many repetitive components which would make our code bulky if we go forward by repeating the same code again and again so how about creating a custom directive which helps you repeat the component innumberable times with using ng-repeat irrespective of the position and template for the directive.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&t=(#2) Playing around custom directive in AngularJs"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Compile-your-directive"><span class="toc-number">1.</span> <span class="toc-text">Compile your directive</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        (#2) Playing around custom directive in AngularJs
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Aswin's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-04-09T01:10:12.000Z" itemprop="datePublished">2017-04-09</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/angularjs/" rel="tag">angularjs</a>, <a class="tag-link-link" href="/tags/javascript/" rel="tag">javascript</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Directive is one of the most powerful feature of the angularjs but it is also one of the most confusing element of angularjs. In your template there would be so many repetitive components which would make our code bulky if we go forward by repeating the same code again and again so how about creating a custom directive which helps you repeat the component innumberable times with using ng-repeat irrespective of the position and template for the directive.</p>
+<p><escape><span id="more"></span></escape></p>
+<p>so how to use a directive, it could be used as an element, an attribute to another element, or even as a comment. Each directive could be restricted to the type of use using restrict key with value as ‘A’, ‘E’, ‘M’ or even ‘AEM’ or ‘AE’ or ‘EM’.</p>
+<p>A: Attribute</p>
+<p>E: Element</p>
+<p>M: Comments</p>
+<p>following code makes the attribute to be used as an attribute and as a element.</p>
+<p>Creating a simplest custom directive</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.module(<span class="string">&#x27;myApp&#x27;</span>, []);</span><br><span class="line">app.directive(<span class="string">&#x27;interestCard&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    restrict: <span class="string">&#x27;AE&#x27;</span>, <span class="comment">// restrict the use of directive as element or attribute to an element</span></span><br><span class="line">   	template: <span class="string">&#x27;&lt;h1&gt;viva la vida&lt;/h1&gt;&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<p>In the above directive we used template for defining how our directive would look like, we could add ‘replace: true,’ which will make sure that when our directive is called upon it actually replaces our directive with the template in directive thus you wont find the directive in final dom elements but you will find the template itself.</p>
+<p>The template mentioned in above code is quite simple, it could be replaced by templareUrl to include a more complex template for the directive’s use.</p>
+<p>Understanding scope in directive</p>
+<p>Ever wondered what all options are available for angular to manipulate data at multiple levels in a single app. Manage data at main app controller, go with the modular approach in building app and handle separate isolated data model for making the isolated components work. In certain uses cases angular directive needs to interact with other controllers defined outside the directive to access certain functions and to change certain scope values. The directive could have its own controller or it can borrow it from main controller.</p>
+<p>In the following section we will explore what all options we have in dealing with data and scoped objects at directive level. Scope in directive are of three types which includes: shared, inherited and isolated scopes. now what does it mean?</p>
+<p>scope: false</p>
+<p>Shared scope, when directive is using scope of controller. Normally scope in directive is always inherited by parent scope, thus making it accessable to functions and scope values defined in controller. Let me remind you any change in the directive in scope it will reflect in the controller’s scope.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.directive(<span class="string">&#x27;vivaLaVida&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    restrict: <span class="string">&#x27;A&#x27;</span>,</span><br><span class="line">    scope: <span class="literal">false</span>,</span><br><span class="line">    ......</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<p>scope: true</p>
+<p>Then there is a true condition where a new scope is created for the directive and change in directive scope will not reflect in the scope of controller this new scope is a disconnected child of the parent controller with all the same property but no tie with the parent.</p>
+<p>scope: {}</p>
+<p>when scope(directive) is completely isolated from scope of controller we go with ‘scope: {}’. well why isolated scope what’s the need to have a sperate scope when you already have one which can be accessed by all. the point to drive back home is you dont want your main controllers scope gets all messed up with logics which are specific to directives and would not be used anywhere else other then that directive.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.directive(<span class="string">&#x27;vivaLaVida&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span>&#123;</span><br><span class="line">    restrict: <span class="string">&#x27;AE&#x27;</span>,</span><br><span class="line">    scope: &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<p>scope elements could be made to connect with different elements through different binding levels, this makes isolated scope great since you have the enviornment totally isolated plus connectivity required as per need. this binding involves</p>
+<p>@ : one way binding mostly used for passing strings values in scope<br>= : two way binding for sharing model. the model in parent scope is connected to isolated scope of directive.<br>&amp; : binding is for passing methods into isolated scope of directive making it available to be called form inside of directive.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">app.directive(<span class="string">&#x27;vivaLaVida&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    restrict: <span class="string">&#x27;AE&#x27;</span>,</span><br><span class="line">    scope: &#123;</span><br><span class="line">      messageText: <span class="string">&#x27;@&#x27;</span>,</span><br><span class="line">      userModel: <span class="string">&#x27;=&#x27;</span>,</span><br><span class="line">      alertFunction: <span class="string">&#x27;&amp;&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    .....</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Compile-your-directive"><a href="#Compile-your-directive" class="headerlink" title="Compile your directive"></a>Compile your directive</h4><p>compile function is like adding last end changes and functionality before the directive is pushed to DOm with its controller. you can have both compile and link function or inside link function you can have pre-link and post-link functions. its just the same.</p>
+<p>now lets go deeper, lets bring some facts on the table regarding DOM and angular. If we go through what’s happening at the back then you would notice that at first whole of the DOM is loaded and then a broadcast is triggered when DOM is ready, angular listen to this trigger and parse the DOM searching for attribute ng-app when found it starts proccessing the DOM from that element.</p>
+<p>Now its depends a lot on the directive’s defination for how angular would parse the directive. Following example would be helpful in understanding deeper concepts with compile and link functions.</p>
+<p>following code reference from jvandemo.com</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">level-one</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">level-two</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">level-three</span>&gt;</span></span><br><span class="line">            Hello &#123;&#123;name&#125;&#125;         </span><br><span class="line">        <span class="tag">&lt;/<span class="name">level-three</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">level-two</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">level-one</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.module(<span class="string">&#x27;plunker&#x27;</span>, []);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createDirective</span>(<span class="params">name</span>)</span>&#123;  </span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      restrict: <span class="string">&#x27;E&#x27;</span>,</span><br><span class="line">      compile: <span class="function"><span class="keyword">function</span>(<span class="params">tElem, tAttrs</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(name + <span class="string">&#x27;: compile&#x27;</span>);</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          pre: <span class="function"><span class="keyword">function</span>(<span class="params">scope, iElem, iAttrs</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(name + <span class="string">&#x27;: pre link&#x27;</span>);</span><br><span class="line">          &#125;,</span><br><span class="line">          post: <span class="function"><span class="keyword">function</span>(<span class="params">scope, iElem, iAttrs</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(name + <span class="string">&#x27;: post link&#x27;</span>);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">app.directive(<span class="string">&#x27;levelOne&#x27;</span>, createDirective(<span class="string">&#x27;levelOne&#x27;</span>));  </span><br><span class="line">app.directive(<span class="string">&#x27;levelTwo&#x27;</span>, createDirective(<span class="string">&#x27;levelTwo&#x27;</span>));  </span><br><span class="line">app.directive(<span class="string">&#x27;levelThree&#x27;</span>, createDirective(<span class="string">&#x27;levelThree&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>here is the output</p>
+<p><img src="https://www.jvandemo.com/content/images/2014/Aug/console-output-1.png" alt="console output"></p>
+<p>if you notice the output console you would see the order in which the code runs.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; COMPILE PHASE</span><br><span class="line">&#x2F;&#x2F; levelOne:    compile function is called</span><br><span class="line">&#x2F;&#x2F; levelTwo:    compile function is called</span><br><span class="line">&#x2F;&#x2F; levelThree:  compile function is called</span><br><span class="line">&#x2F;&#x2F; PRE-LINK PHASE</span><br><span class="line">&#x2F;&#x2F; levelOne:    pre link function is called</span><br><span class="line">&#x2F;&#x2F; levelTwo:    pre link function is called</span><br><span class="line">&#x2F;&#x2F; levelThree:  pre link function is called</span><br><span class="line">&#x2F;&#x2F; POST-LINK PHASE (Notice the reverse order)</span><br><span class="line">&#x2F;&#x2F; levelThree:  post link function is called</span><br><span class="line">&#x2F;&#x2F; levelTwo:    post link function is called</span><br><span class="line">&#x2F;&#x2F; levelOne:    post link function is called</span><br></pre></td></tr></table></figure>
+
+
+<p>few points to notice, how angular run the compile of each element from top to bottom and then run the link function starting with pre-link in the same order but the post-link function is reverse order.</p>
+<p>Compile function:</p>
+<p>use compile function to change the original DOM elements before angualrjs creates instance of it and before scope is created. ng-repeat is a perfect example for this.</p>
+<p>When compile runs scope is yet not assigned hence compile function can be defined as</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Compile function</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param <span class="variable">tElem</span></span> - template element</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param <span class="variable">tAttrs</span></span> - attributes of the template element</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">tElem, tAttrs</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<p>pre-link function:</p>
+<p>use pre-link function to manipulate the scope of the directive before the post-link function is called since we have the scope, elements and attributes but no controller. Controller only comes in the post-link function of the directive.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Pre-link function</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param <span class="variable">scope</span></span> - scope assigned to the directive</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param <span class="variable">tElem</span></span> - template element</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param <span class="variable">tAttrs</span></span> - attributes of the template element</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">scope, tElem, tAttrs</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>post-link function:</p>
+<p>run post-link function to execute the logic of your directive or instance since all child elements compile and pre-link functions have been executed.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Post-link function</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param <span class="variable">scope</span></span> - scope assigned to the directive</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param <span class="variable">tElem</span></span> - template element</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param <span class="variable">tAttrs</span></span> - attributes of the template element</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">scope, tElem, tAttrs</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Compile-your-directive"><span class="toc-number">1.</span> <span class="toc-text">Compile your directive</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&text=(#2) Playing around custom directive in AngularJs"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&title=(#2) Playing around custom directive in AngularJs"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&is_video=false&description=(#2) Playing around custom directive in AngularJs"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=(#2) Playing around custom directive in AngularJs&body=Check out this article: http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&title=(#2) Playing around custom directive in AngularJs"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&title=(#2) Playing around custom directive in AngularJs"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&title=(#2) Playing around custom directive in AngularJs"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&title=(#2) Playing around custom directive in AngularJs"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&name=(#2) Playing around custom directive in AngularJs&description=&lt;p&gt;Directive is one of the most powerful feature of the angularjs but it is also one of the most confusing element of angularjs. In your template there would be so many repetitive components which would make our code bulky if we go forward by repeating the same code again and again so how about creating a custom directive which helps you repeat the component innumberable times with using ng-repeat irrespective of the position and template for the directive.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://codexdelta.github.io/2017/04/09/Playing_around_custom_directive/&t=(#2) Playing around custom directive in AngularJs"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2021
+    Aswin Devarajan
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

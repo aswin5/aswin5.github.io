@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Nodejs is a js runtime which is built on chrom’s v8 js engine, there are few remarkable features of nodejs application which makes it choice of 2017 in building server side application. It is based o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(#1) Building production ready backend in 20 mins">
+<meta property="og:url" content="http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/index.html">
+<meta property="og:site_name" content="Aswin&#39;s Blog">
+<meta property="og:description" content="Nodejs is a js runtime which is built on chrom’s v8 js engine, there are few remarkable features of nodejs application which makes it choice of 2017 in building server side application. It is based o">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://codexdelta.github.io/images/test_post_header.jpg">
+<meta property="og:image" content="http://codexdelta.github.io/images/NodeJS-Stack.png">
+<meta property="og:image" content="http://codexdelta.github.io/images/module_count-768x562.png">
+<meta property="og:image" content="http://codexdelta.github.io/images/trend_tech_chart-768x476.png">
+<meta property="og:image" content="http://codexdelta.github.io/images/loopback_1.png">
+<meta property="og:image" content="http://codexdelta.github.io/images/loopback_2-768x291.png">
+<meta property="og:image" content="http://codexdelta.github.io/images/loopback_3-300x192.png">
+<meta property="article:published_time" content="2017-02-06T01:10:12.000Z">
+<meta property="article:modified_time" content="2021-03-21T01:03:40.123Z">
+<meta property="article:author" content="Aswin Devarajan">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="nodejs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://codexdelta.github.io/images/test_post_header.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>(#1) Building production ready backend in 20 mins</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/04/09/Playing_around_custom_directive/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&text=(#1) Building production ready backend in 20 mins"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&title=(#1) Building production ready backend in 20 mins"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&is_video=false&description=(#1) Building production ready backend in 20 mins"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=(#1) Building production ready backend in 20 mins&body=Check out this article: http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&title=(#1) Building production ready backend in 20 mins"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&title=(#1) Building production ready backend in 20 mins"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&title=(#1) Building production ready backend in 20 mins"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&title=(#1) Building production ready backend in 20 mins"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&name=(#1) Building production ready backend in 20 mins&description=&lt;p&gt;&lt;img src=&#34;/images/test_post_header.jpg&#34; alt=&#34;post header&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Nodejs is a js runtime which is built on chrom’s v8 js engine, there are few remarkable features of nodejs application which makes it choice of 2017 in building server side application. It is based on event-driven, non-blocking I/O model that makes it so lightweight and efficeint you won’t even feel like you are developing a server side application which is going to act as provider and handler for millions of incoming requests. This all comes from the family of ECMAscript which is an object oriented programming language for performing computations and manipulating computational objects within a host environment.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&t=(#1) Building production ready backend in 20 mins"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-you-get-from-nodejs"><span class="toc-number">2.</span> <span class="toc-text">What you get from nodejs?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#What%E2%80%99s-next-in-this"><span class="toc-number">2.1.</span> <span class="toc-text">What’s next in this?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Do-you-still-have-doubt-about-nodejs"><span class="toc-number">3.</span> <span class="toc-text">Do you still have doubt about nodejs?</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        (#1) Building production ready backend in 20 mins
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Aswin's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-02-06T01:10:12.000Z" itemprop="datePublished">2017-02-06</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/javascript/" rel="tag">javascript</a>, <a class="tag-link-link" href="/tags/nodejs/" rel="tag">nodejs</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><img src="/images/test_post_header.jpg" alt="post header"></p>
+<p>Nodejs is a js runtime which is built on chrom’s v8 js engine, there are few remarkable features of nodejs application which makes it choice of 2017 in building server side application. It is based on event-driven, non-blocking I/O model that makes it so lightweight and efficeint you won’t even feel like you are developing a server side application which is going to act as provider and handler for millions of incoming requests. This all comes from the family of ECMAscript which is an object oriented programming language for performing computations and manipulating computational objects within a host environment.</p>
+<p><escape><span id="more"></span></escape></p>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Prior to V8 engine host environment was something which synonym with just the browser but ever since the implementation of v8 you have the same browser plus additional feature outside the browser. In node the program never stops that’s what node mindset says. You don’t have to wait for any program to get done or send back the control when done. Nodejs application gives the capability to run js application with server-side capabilities.</p>
+<p>There is a latest trend in the developers community to go mobile first, this doesn’t mean you are developing an application which is for mobile app and then for other devices, no what it means is you are developing something which is pluggable for all devices. Prior to this the main focus was on the front, its look and feel, your backend acted like simple dumper and fetcher for your frontend data. This is changing now, we are moving ahead with the more broader scope utilization with nodejs framework, prominently into IOT. Embedded devices are changing everything, you dont need front for everything.</p>
+<p>GE Aviation is powering there aircraft with sensors, more like event driven architecture where nodejs is being used. Ebay has already switched to nodejs to handle there huge traffic but when it comes to traffic walmart’s site is the biggest nodejs application in terms of traffic handling. When paypal switched to nodejs for they observed a 2X performance as compared to there java web app and that was when nodejs was just new to the programming world. The recent switch of Linkedin app into a nodejs application is again benchmark achieved by nodejs, did I miss the point of Uber. Well they too have started using nodejs for there application.</p>
+<p>Paypal’s tech blog says they observed a 35% decrease in response time for there site. Now that’s a huge plus point for paypal for handling such a gigantic traffic that they observe during a black Friday.<br>So where can you use nodejs?</p>
+<p>JavaScript is everywhere. With JavaScript you can </p>
+<ul>
+<li>control Internet of Things devices</li>
+<li>implement real-time services </li>
+<li>develop web applications</li>
+<li>operate e-commerce sites </li>
+<li>serve as backend for your mobile applications enterprise web services </li>
+</ul>
+<p>(what are you waiting for when giants are favoring nodejs?) and lot more.</p>
+<h3 id="What-you-get-from-nodejs"><a href="#What-you-get-from-nodejs" class="headerlink" title="What you get from nodejs?"></a>What you get from nodejs?</h3><p>  You can cut short to half the number of developer required to develop a product.<br>  No need for extra servers to handle application, database and separate controlling master backend.<br>  Load time for the page is reduce to 50%<br>  Its always the best developers who endeavor into new tech and explore it to the full<br>  Your customer is always happy with your fast deliveries.<br>  Your developer is also happy with the opportunity to work on the best tech in the market.<br>  You staff stay with you longer since you are providing the best learning environment which is hard to find in the market.</p>
+<h4 id="What’s-next-in-this"><a href="#What’s-next-in-this" class="headerlink" title="What’s next in this?"></a>What’s next in this?</h4><p>If you observe technical trends closely you will observe that enterprises are planning and outsourcing there new requirements into modern technologies like Nodejs and they are caution but desperately want to switch to something faster and reliable. And the best choice in the market is nodejs. Which answers all the question required to handle a full-fledged system keeping a consistent technology both at front and at back. With MEAN stack we only require few hours to prototype and deliver a proof-of-concept in the beginning and move to a full monitored deployment with space for scalability once a green signal is achieved from concerned places.</p>
+<p>When you are using traditional server for your web application which is based on thread then you are leveraging each incoming request to a server thread and one thread can handle only one request at a time and you can have only limited number of threads running in your web application server. If you have a huge server which gives you a response in under half a millisecond then you dont need to even think of node but this is not the real case scenario. Companies usually dont have such huge server to concurrently handle request on each thread. When it comes to nodejs it runs on a single thread and dynamically changes the traditional architecture by creating an event loop in the system this event loop handles all the incoming request and give each request a callback which is a c++ pointer and then it moves on to the next incoming request and so on no incoming request have to wait to get the response back to the request.</p>
+<p>Once the incoming request is assigned a c++ pointer which is also called a callback. The task in hand of every request is passed on to operating system’s POSIX async threads which makes it so Non-blocking IO system. No matter how slow your db is your system will not break if new request keeps on coming in.</p>
+<p><img src="/images/NodeJS-Stack.png" alt="nodejs stack"></p>
+<!-- image nodejs compiler  -->
+
+
+<p>If you look at the structure of the stack of nodejs you will observe that js is present only on the topmost layer rest all is built in c/c++. so the application layer interacts with nodejs standard library which is built using js and its binding which helps you create socket, http and other activities is built using c/c++ which again forward to the V8 engine which has a performance library names Libuv (earlier it was libeio and libev but libuv is the latest upgrade that V8 engine encountered). From then on the task is handled by multiple kernal threads.</p>
+<p>Gone are those days when you had to serialize the data coming from frontend to backend and then to database. These days when the fullstack development is at full craze you can have the same data model at your frontend app, at your backend and at your database allowing you to focus more on quality development rather then technical issues which could come up with other tech stack.</p>
+<h3 id="Do-you-still-have-doubt-about-nodejs"><a href="#Do-you-still-have-doubt-about-nodejs" class="headerlink" title="Do you still have doubt about nodejs?"></a>Do you still have doubt about nodejs?</h3><p>Here is the chart showing number of modules available in the nodejs, the count is more than any other platform.</p>
+<p><img src="/images/module_count-768x562.png" alt="nodejs stack"></p>
+<p><img src="/images/trend_tech_chart-768x476.png" alt="nodejs stack"></p>
+<p>Getting started with Loopback to build your REST api.<br>Loopback is a nodejs framework build by strongloop an IBM owned company. Strongloop have the biggest pie share for contributing to nodejs repo.<br>So what does loopback help you with in this whole setup? It helps you to create quickly dynamic REST apis to your host server. Highly extensible and opensource framework. Your quick solution to connect your any devices with your services and get you started with real challenge that is to design the best application solving the problem.<br>Loopback uses yeoman to scaffold your node application which is controlled by loopback’s cli. This cli acts as a command center of the developer while building the application.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">slc loopback // to get started with the loopback</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/loopback_1.png" alt="nodejs stack"></p>
+<p>you can give yo-ur application name over here : we will be giving it as viva-la-vida</p>
+<p>A series of interaction would be there to help you get setup some key points in the application such as what should be the name of the directory in which the app will contain, which version of loopback would you like use, what kind of application you have in mind? This would include what database you want to choose from. Its pretty simple answers which would help the yeoman scaffold your app best to your requirement.</p>
+<p><img src="/images/loopback_2-768x291.png" alt="loopback"></p>
+<p>It will run npm install for you and install all the dependies for you.<br>Then comes the need to define the model of data which you require for your REST api.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> viva-la-vida // to enter into the application root directory.</span></span><br><span class="line"><span class="meta">$</span><span class="bash">slc loopback:model</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/images/loopback_3-300x192.png" alt="loopback"></p>
+<p>Now comes the real game, which is to design your model which will be exposed using REST api.</p>
+<p>It asks you to choose your datasource, currently we dont have a datasource other then memory so go wth memory for now later we will be swicthing to mongodb.</p>
+<p>You will be asked to give a name to your model followed by what base class would you like choose for your model. There are some prebuild base-class models which you could choose from and there is a custom option too which could help you design your own model.</p>
+<p>A standard which we following while building up REST api is to give a pural name to the api endpoint to that model keeping things standard and consistent through out the application. You can also choose weather you want to keep your model common between your client and server side both or you want to keep your model only at server side. In MEAN stack it is common to use a common mode structure which could be used at client side and at server side, which saves time and keep things in consistant form.</p>
+<p>There are multiple best practices which has been included in loopback including structure, security, permissions and access limits etc.</p>
+<p>Now comes adding properties to the model person, its more like adding column to the table, we have defined ‘firstname’ as our first property. It will ask you to choose the type of the property to be defined for the column we have selected string as our type then it ask you whether you want to keep this property as required or not. What should be the default value for this property.</p>
+<p>That was simple right, similarity you mention all the properties which is required in the model. So loopback has done a lot of work for us setting up our application with basic structure which is extensible to build a full-fledged application on this.</p>
+<p>Go ahead and see the whole code in your editor and run the application by typing in:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">node .</span></span><br></pre></td></tr></table></figure>
+
+<p>Most likely you will be asked to access <a target="_blank" rel="noopener" href="http://0.0.0.0:3000/explorer">http://0.0.0.0:3000/explorer</a> (<a target="_blank" rel="noopener" href="http://0.0.0.0:3000/explorer">http://0.0.0.0:3000/explorer</a>) to interact with REST apis graphically unless you have given a custom path for server. Loopback has designed a great REST interacting GUI helping you to test your REST calls. You can perform PUT, POST, GET, DELETE etc.</p>
+<p>Now time change your datasource to mongodb.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">slc loopback:datasource</span></span><br></pre></td></tr></table></figure>
+
+<p>This will give you an options of databases which are currently supported by loopback. Choose mongo for our current requirement.<br>You will have to install the connector for this database.<br>$npm install –save loopback-connector-mongodb<br>This will install the right conenctor for the mongodb. Following the installation change the settings of the application by updating the .loopbackrc file in the root directory with following data.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;dev&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;mongodb&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;host&quot;</span>: <span class="string">&quot;127.0.0.1&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;database&quot;</span>: <span class="string">&quot;test&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;username&quot;</span>: <span class="string">&quot;youruser&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;password&quot;</span>: <span class="string">&quot;yourpass&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;port&quot;</span>: <span class="number">27017</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;test&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;mongodb&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;host&quot;</span>: <span class="string">&quot;127.0.0.1&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;database&quot;</span>: <span class="string">&quot;test&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;username&quot;</span>: <span class="string">&quot;youruser&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;password&quot;</span>: <span class="string">&quot;yourpass&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;port&quot;</span>: <span class="number">27017</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Username/password is only required if the mongodb server has authentication enabled.<br>Update the datasource.json file inside your server directory. With following code:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">&quot;mongodb&quot;</span>: &#123;</span><br><span class="line"><span class="attr">&quot;host&quot;</span>: <span class="string">&quot;localhost&quot;</span>,</span><br><span class="line"><span class="attr">&quot;port&quot;</span>: <span class="number">27017</span>,</span><br><span class="line"><span class="attr">&quot;url&quot;</span>: <span class="string">&quot;http://mongodb://localhost/loopback&quot;</span>,</span><br><span class="line"><span class="attr">&quot;database&quot;</span>: <span class="string">&quot;mongodb&quot;</span>,</span><br><span class="line"><span class="attr">&quot;password&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="attr">&quot;name&quot;</span>: <span class="string">&quot;mongodb&quot;</span>,</span><br><span class="line"><span class="attr">&quot;user&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="attr">&quot;connector&quot;</span>: <span class="string">&quot;mongodb&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Now you have a datasource with the name of mongodb. You just need one more configuration to make it run. In your server folder go to model-config.json and replace db which was your default in-memory db for your model with new ‘mongodb’. This will connect your model data with your database and replicate the structure.</p>
+<p>That’s it run you application with “node .” and experiment it as you like. This will give you a better understanding of the application.<br>So this was an example which involved basic REST app with nodejs and loopback. But the next step should be to make it a full-fledged node app which is monitor-able and scalable.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-you-get-from-nodejs"><span class="toc-number">2.</span> <span class="toc-text">What you get from nodejs?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#What%E2%80%99s-next-in-this"><span class="toc-number">2.1.</span> <span class="toc-text">What’s next in this?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Do-you-still-have-doubt-about-nodejs"><span class="toc-number">3.</span> <span class="toc-text">Do you still have doubt about nodejs?</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&text=(#1) Building production ready backend in 20 mins"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&title=(#1) Building production ready backend in 20 mins"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&is_video=false&description=(#1) Building production ready backend in 20 mins"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=(#1) Building production ready backend in 20 mins&body=Check out this article: http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&title=(#1) Building production ready backend in 20 mins"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&title=(#1) Building production ready backend in 20 mins"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&title=(#1) Building production ready backend in 20 mins"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&title=(#1) Building production ready backend in 20 mins"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&name=(#1) Building production ready backend in 20 mins&description=&lt;p&gt;&lt;img src=&#34;/images/test_post_header.jpg&#34; alt=&#34;post header&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Nodejs is a js runtime which is built on chrom’s v8 js engine, there are few remarkable features of nodejs application which makes it choice of 2017 in building server side application. It is based on event-driven, non-blocking I/O model that makes it so lightweight and efficeint you won’t even feel like you are developing a server side application which is going to act as provider and handler for millions of incoming requests. This all comes from the family of ECMAscript which is an object oriented programming language for performing computations and manipulating computational objects within a host environment.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://codexdelta.github.io/2017/02/06/Building_production_ready_backend/&t=(#1) Building production ready backend in 20 mins"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2021
+    Aswin Devarajan
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
